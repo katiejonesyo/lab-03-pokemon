@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { Component } from'react';
 import './App.css';
+import Header from './Header.js';
+import Navibar from './Navibar.js';
+import Search from './Search.js';
+import ListPage from './ListPage.js';
+import { pokemon } from './Data.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+
+export default class App extends Component {
+  render() {
+    return (
+      <>
+        <header>
+        <Header />
+        <Navibar />
+        </header>
+        <main>
+        <Search data={pokemon}/>
+        <ListPage data={pokemon}/>
+        </main>
+      </>
+    )
+  }
+};
