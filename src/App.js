@@ -1,65 +1,33 @@
-import React, { Component } from'react';
-import './App.css';
+import React, { Component } from 'react'
+import {
+    BrowserRouter as Router, 
+    Route, 
+    Switch,
+} from 'react-router-dom';
+import ListPage from './ListPage.js';
+import PokeHome from './PokeHome.js';
 import Header from './Header.js';
-import Navibar from './Navibar.js';
-import Search from './Search.js';
-import PokeList from './PokeList.js';
-import { pokemon } from './Data.js';
-import Sort from './Sort.js';
-
-
 
 export default class App extends Component {
-  state = {
-    selectedCategory: '',
-    selectedSort: '',
-    inputVal: ''
-  }
-
-handleCategorySelect = (e) => {
-  this.setState({
-    selectedCategory: e.target.value
-  })
-}
-handleSort = (e) => {
-  this.setState({
-    selectedSort: e.target.value
-  });
-}
-  handleSearch = (e) => {
-    this.setState({
-      inputVal: e.target.value
-    })
-  }
-
-  render() {
-    return (
-      <>
-      <header>
-        <Header/>
-        <Navibar/>
-      </header>
-          <main>
-            <Search
-            data={pokemon}
-            handleCategorySelect={this.handleCategorySelect}
-            handleSort={this.handleSort}
-            handleSearch={this.handleSearch}
-            inputVal={this.state.inputVal}
-            />
-          
-            <PokeList
-            data={pokemon}
-            selectedCategory={this.state.selectedCategory}
-            selectedSort={this.state.selectedSort}
-            inputVal={this.state.inputVal}/>
-
-            <Sort
-            data={this.props.data}
-            handleCategorySelect={this.props.handleCategorySelect}
-            handleSort={this.props.handleSort}/>
-          </main>
-      </>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <Router>
+                    <Header name="pokemon" />
+                    <Switch>
+                        <Route 
+                            path="/" 
+                            exact
+                            render={(routerProps) => <PokeHome {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/list" 
+                            exact
+                            render={(routerProps) => <ListPage {...routerProps} />} 
+                        />
+                    </Switch>
+                </Router>
+            </div>
+        )
+    }
 }
