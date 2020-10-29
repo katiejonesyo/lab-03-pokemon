@@ -6,11 +6,19 @@ export default class PokeList extends Component {
         return (
             <section className="poke-list">
                 PokeList (children: PokeItem)
-                {
-                    this.props.data.map((pokemon) => {
+
+                {   this.props.data.filter((pokemon) => {
+                        if (!this.props.submit) return true;
+                        if (pokemon.pokemon === this.props.submit) return true;
+                        return false;
+                    })
+
+
+                   .map((pokemon, i) => {
                         return (
                             
                             <PokeItem
+                            key={i}
                             name={pokemon.pokemon}
                             typeOne={pokemon.type_1}
                             typeTwo={pokemon.type_2}
@@ -18,11 +26,7 @@ export default class PokeList extends Component {
                             />
                         )
                         }) 
-                     .filter((pokemon) => {
-                            if (!this.props.inputVal) return true;
-                            if (pokemon.pokemon === this.props.inputVal) return true;
-                            return false;
-                        })
+                   
                         
                       .sort((a, b) => {
                             if (!this.props.selectedSort === 'ascending'){

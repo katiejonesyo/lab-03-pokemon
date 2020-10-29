@@ -3,17 +3,14 @@ import React, { Component } from 'react';
 export default class Search extends Component {
     render() {
         return (
-            <section className="search">
+            <form onSubmit={this.props.submit}>
             <input
                 placeholder=" Search"
                 className="search-input"
+                type="text"
                 onChange={this.props.handleSearch}/>
-
-            {/* <Sort
-                data={this.props.data}
-                handleCategorySelect={this.props.handleCategorySelect}
-                handleSort={this.props.handleSort}/> */}
-            </section>
+                <button>Submit</button>
+            </form>
         )
     }
 

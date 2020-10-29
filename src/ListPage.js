@@ -1,4 +1,4 @@
-import React, { Component } from'react';
+import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
 import Navibar from './Navibar.js';
@@ -13,7 +13,8 @@ export default class App extends Component {
   state = {
     selectedCategory: '',
     selectedSort: '',
-    inputVal: ''
+    inputVal: '',
+    searchQuery: ''
   }
 
 handleCategorySelect = (e) => {
@@ -32,7 +33,15 @@ handleSort = (e) => {
     })
   }
 
+  handleSubmit = (e) => { 
+    e.preventDefault();
+    this.setState({
+      searchQuery: this.state.inputVal
+    })
+  }
+
   render() {
+    console.log(this.state.searchQuery)
     return (
       <>
       <header>
@@ -41,18 +50,20 @@ handleSort = (e) => {
       </header>
           <main>
             <Search
-            data={pokemon}
-            handleCategorySelect={this.handleCategorySelect}
-            handleSort={this.handleSort}
+            // data={pokemon}
+            // handleCategorySelect={this.handleCategorySelect}
+            // handleSort={this.handleSort}
             handleSearch={this.handleSearch}
-            inputVal={this.state.inputVal}
+            // inputVal={this.state.inputVal}
+            submit={this.handleSubmit}
             />
           
             <PokeList
             data={pokemon}
             selectedCategory={this.state.selectedCategory}
             selectedSort={this.state.selectedSort}
-            inputVal={this.state.inputVal}/>
+            inputVal={this.state.inputVal}
+            submit={this.state.searchQuery}/>
 
             <Sort
             data={this.props.data}
