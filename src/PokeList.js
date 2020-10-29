@@ -8,6 +8,7 @@ export default class PokeList extends Component {
                 PokeList (children: PokeItem)
                 {
                     this.props.data.map((pokemon) => {
+                        return (
                             
                             <PokeItem
                             name={pokemon.pokemon}
@@ -15,7 +16,7 @@ export default class PokeList extends Component {
                             typeTwo={pokemon.type_2}
                             image={pokemon.url_image}
                             />
-                            
+                        )
                         }) 
                      .filter((pokemon) => {
                             if (!this.props.inputVal) return true;
