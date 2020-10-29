@@ -11,7 +11,7 @@ export default class PokeItem extends Component {
                 <div className="poke-typeone">{this.props.typeOne}</div>
                 <div className="poke-typetwo r-col">{this.props.typeTwo}</div>
                 <div className="pokedex-entry">{this.props.pokedexEntry}</div>
-                <img className="poke-img" src={this.props.image} alt="poke image"/>
+                <img className="poke-img" src={this.props.image} alt=""/>
             </div>
         )
     
