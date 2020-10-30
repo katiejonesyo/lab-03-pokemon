@@ -6,16 +6,15 @@ export default class Header extends Component {
         return (
             <div className="header">
                 <h1>
-                    <u><strong>Pokemon</strong></u>
+                   Pokemon
                 </h1>
-                <ul><li>
+                <h2>
+                
                     <Link to="/">Poke Home</Link>
-                    </li>
-                    <li>
+                   
                     <Link to="/list">List Page</Link>
-                    </li>
-
-                </ul>
+                  
+                </h2>
             </div>
         )
     }

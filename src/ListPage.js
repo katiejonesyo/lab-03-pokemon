@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import fetch from 'superagent';
 import PokeItem from './PokeItem.js';
+import Sort from './Sort.js';
 
+const sleep = (time) => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve()
+    }, time)
+});
 
 export default class App extends Component {
   state = {
@@ -19,20 +25,22 @@ export default class App extends Component {
 
 fetchPokemon = async () => {
   const response = await fetch.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
-  console.log(response);
-         this.setState({ data: response.body.results});
+  
+  await sleep(2000)
+  this.setState({ data: response.body.results});
 }
 
-// handleCategorySelect = (e) => {
-//   this.setState({
-//     selectedCategory: e.target.value
-//   })
-// }
-// handleSort = (e) => {
-//   this.setState({
-//     selectedSort: e.target.value
-//   });
-// }
+handleCategorySelect = (e) => {
+  this.setState({
+    selectedCategory: e.target.value
+  })
+}
+handleSort = (e) => {
+  this.setState({
+    selectedSort: e.target.value
+  });
+}
+
   handleSearch = (e) => {
     this.setState({
       searchQuery: e.target.value
@@ -51,17 +59,35 @@ fetchPokemon = async () => {
     console.log(this.state.searchQuery)
     return (
       <>  
+      
+      <main>
+        <section>
+
         <form onSubmit={this.handleSubmit}>
             <input
                 placeholder=" Search"
                 className="search-input"
                 type="text"
-                onChange={this.handleSearch}/>
+                onChange={this.handleSearch}
+                />
                 <button>Submit</button>
             </form>
+            <Sort 
+              handleSort={this.handleSort}
+              handleCategorySelect={this.handleCategorySelect}
+              />
+              </section>
+            
             {
               this.state.data.length === 0
-              ? 'Loading'
+              ? <iframe 
+              src="https://giphy.com/gifs/MTKsRM3QzNeOI59SbO/html5" 
+              title={Math.random()}
+              width="500" 
+              height="500" 
+              frameBorder="0" 
+              className="giphy-embed" 
+              allowFullScreen/>
               : this.state.data.map((pokemon, i) => {
                 return (
                      <PokeItem
@@ -73,8 +99,12 @@ fetchPokemon = async () => {
                     />
                 )
                 })
+                
               }
+             
+              </main>
       </>
+      
     )
   }
 }

@@ -7,7 +7,7 @@ import {
 import ListPage from './ListPage.js';
 import PokeHome from './PokeHome.js';
 import Header from './Header.js';
-import Footer from './Footer.js';
+
 
 
 
@@ -30,7 +30,6 @@ export default class App extends Component {
                             render={(routerProps) => <ListPage {...routerProps} />} 
                         />
                     </Switch>
-                    <Footer />
                 </Router>
                 
             </div>
