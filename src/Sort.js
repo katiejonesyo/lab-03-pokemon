@@ -12,8 +12,8 @@ export default class Sort extends Component {
                 <select className="category-dropdown" defaultValue={this.props.selectedCategory} onChange={this.props.handleCategorySelect}>
                     <option className="content" value="">all categories</option>
                     {
-                        //getUniqueCategories(this.props.data).map((category, index) =>
-                        //<option className="content" value={category} key={index}>{category}</option>//)
+                        // getUniqueCategories(this.props.data).map((category, index) =>
+                        // <option className="content" value={category} key={index}>{category}</option>)
                     }
                 </select>
                 
@@ -23,7 +23,7 @@ export default class Sort extends Component {
 }
 
 
-// const getUniqueCategories = (data) => {
-//     const arr = data.map(pokemon => pokemon.type_1);
-//     return Array.from(new Set(arr));
-//};
+// { const getUniqueCategories = (data) => {
+// const arr = data.map(pokemon => pokemon.type_1);
+// return Array.from(new Set(arr));
+// }; }

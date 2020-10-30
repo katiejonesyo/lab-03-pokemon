@@ -14,8 +14,10 @@ export default class PokeList extends Component {
 
                     .sort((a, b) => {
                         if (!this.props.selectedSort === 'ascending'){
+                            console.log(this.props.selectedCategory)
                             return a[this.props.selectedCategory] - b[this.props.selectedCategory]
                         } else {
+                            console.log(this.props.selectedCategory)
                             return b[this.props.selectedCategory] - a[this.props.selectedCategory]
                         }
                     })
@@ -33,8 +35,7 @@ export default class PokeList extends Component {
                         )
                         }) 
                    
-                        
-                        // const searchValidation = (data, input) => {
+                        // const searchValidation = (pokemon, input) => {
                         //     if (input) {
                         //         return data.filter(pokemon => pokemon.pokemon.includes(input));
                         //     } else {

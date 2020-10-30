@@ -40,7 +40,6 @@ handleSort = (e) => {
   }
 
   render() {
-    console.log(this.state.searchQuery)
     return (
       <>
         <Navibar/>
