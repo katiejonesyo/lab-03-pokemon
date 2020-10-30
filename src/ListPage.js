@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header.js';
 import Navibar from './Navibar.js';
 import Search from './Search.js';
 import PokeList from './PokeList.js';
@@ -44,10 +43,7 @@ handleSort = (e) => {
     console.log(this.state.searchQuery)
     return (
       <>
-      <header>
-        <Header/>
         <Navibar/>
-      </header>
           <main>
             <Search
             // data={pokemon}

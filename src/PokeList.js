@@ -5,8 +5,7 @@ export default class PokeList extends Component {
     render () {
         return (
             <section className="poke-list">
-                PokeList (children: PokeItem)
-
+                PokeList
                 {   this.props.data.filter((pokemon) => {
                         if (!this.props.submit) return true;
                         if (pokemon.pokemon === this.props.submit) return true;
