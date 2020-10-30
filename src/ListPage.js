@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navibar from './Navibar.js';
-import Search from './Search.js';
-import PokeList from './PokeList.js';
-import { pokemon } from './Data.js';
-import Sort from './Sort.js';
-
+import fetch from 'superagent';
+import PokeItem from './PokeItem.js';
 
 
 export default class App extends Component {
@@ -13,59 +9,73 @@ export default class App extends Component {
     selectedCategory: '',
     selectedSort: '',
     inputVal: '',
-    searchQuery: ''
+    searchQuery: '',
+    data: []
+  }
+  componentDidMount = async () => {
+    await this.fetchPokemon();
+
   }
 
-handleCategorySelect = (e) => {
-  this.setState({
-    selectedCategory: e.target.value
-  })
+fetchPokemon = async () => {
+  const response = await fetch.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
+  console.log(response);
+         this.setState({ data: response.body.results});
 }
-handleSort = (e) => {
-  this.setState({
-    selectedSort: e.target.value
-  });
-}
+
+// handleCategorySelect = (e) => {
+//   this.setState({
+//     selectedCategory: e.target.value
+//   })
+// }
+// handleSort = (e) => {
+//   this.setState({
+//     selectedSort: e.target.value
+//   });
+// }
   handleSearch = (e) => {
     this.setState({
-      inputVal: e.target.value
+      searchQuery: e.target.value
     })
+    console.log(e.target.value);
+
   }
 
-  handleSubmit = (e) => { 
+  handleSubmit = async (e) => { 
     e.preventDefault();
-    this.setState({
-      searchQuery: this.state.inputVal
-    })
+     await this.fetchPokemon(); 
+     
   }
 
   render() {
+    console.log(this.state.searchQuery)
     return (
-      <>
-        <Navibar/>
-          <main>
-            <Search
-            // data={pokemon}
-            // handleCategorySelect={this.handleCategorySelect}
-            // handleSort={this.handleSort}
-            handleSearch={this.handleSearch}
-            // inputVal={this.state.inputVal}
-            submit={this.handleSubmit}
-            />
-          
-            <PokeList
-            data={pokemon}
-            selectedCategory={this.state.selectedCategory}
-            selectedSort={this.state.selectedSort}
-            inputVal={this.state.inputVal}
-            submit={this.state.searchQuery}/>
-
-            <Sort
-            data={this.props.data}
-            handleCategorySelect={this.props.handleCategorySelect}
-            handleSort={this.props.handleSort}/>
-          </main>
+      <>  
+        <form onSubmit={this.handleSubmit}>
+            <input
+                placeholder=" Search"
+                className="search-input"
+                type="text"
+                onChange={this.handleSearch}/>
+                <button>Submit</button>
+            </form>
+            {
+              this.state.data.length === 0
+              ? 'Loading'
+              : this.state.data.map((pokemon, i) => {
+                return (
+                     <PokeItem
+                    key={i}
+                    name={pokemon.pokemon}
+                    typeOne={pokemon.type_1}
+                    typeTwo={pokemon.type_2}
+                    image={pokemon.url_image}
+                    />
+                )
+                })
+              }
       </>
     )
   }
 }
+

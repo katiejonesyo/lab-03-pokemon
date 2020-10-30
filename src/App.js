@@ -8,11 +8,12 @@ import ListPage from './ListPage.js';
 import PokeHome from './PokeHome.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
-import Fetch from './Fetch.js';
+
 
 
 export default class App extends Component {
     render() {
+        
         return (
             <div>
                 <Router>
@@ -27,11 +28,6 @@ export default class App extends Component {
                             path="/list" 
                             exact
                             render={(routerProps) => <ListPage {...routerProps} />} 
-                        />
-                        <Route 
-                            path="/fetch" 
-                            exact
-                            render={(routerProps) => <Fetch {...routerProps} />} 
                         />
                     </Switch>
                     <Footer />

@@ -14,9 +14,6 @@ export default class Header extends Component {
                     <li>
                     <Link to="/list">List Page</Link>
                     </li>
-                    <li>
-                    <Link to="/fetch">Fetch</Link>
-                    </li>
 
                 </ul>
             </div>
