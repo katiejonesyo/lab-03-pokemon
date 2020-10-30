@@ -12,6 +12,13 @@ export default class PokeList extends Component {
                         return false;
                     })
 
+                    .sort((a, b) => {
+                        if (!this.props.selectedSort === 'ascending'){
+                            return a[this.props.selectedCategory] - b[this.props.selectedCategory]
+                        } else {
+                            return b[this.props.selectedCategory] - a[this.props.selectedCategory]
+                        }
+                    })
 
                    .map((pokemon, i) => {
                         return (
@@ -26,14 +33,6 @@ export default class PokeList extends Component {
                         )
                         }) 
                    
-                        
-                      .sort((a, b) => {
-                            if (!this.props.selectedSort === 'ascending'){
-                                return a[this.props.selectedCategory] - b[this.props.selectedCategory]
-                            } else {
-                                return b[this.props.selectedCategory] - a[this.props.selectedCategory]
-                            }
-                        })
                         
                         // const searchValidation = (data, input) => {
                         //     if (input) {
