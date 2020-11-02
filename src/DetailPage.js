@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import fetch from 'superagent'
-import Header from './Header.js';
 import PokeList from './PokeList.js';
  
 export default class DetailPage extends Component {
