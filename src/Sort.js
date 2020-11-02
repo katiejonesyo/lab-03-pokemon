@@ -17,4 +17,4 @@ export default class Sort extends Component {
             </div>
         )
     }
-}
+};

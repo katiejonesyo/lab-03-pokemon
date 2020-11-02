@@ -7,6 +7,9 @@ import {
 import ListPage from './ListPage.js';
 import PokeHome from './PokeHome.js';
 import Header from './Header.js';
+import DetailPage from './DetailPage.js';
+import PaginationPage from './PaginationPage.js';
+
 
 
 
@@ -28,6 +31,11 @@ export default class App extends Component {
                             path="/list" 
                             exact
                             render={(routerProps) => <ListPage {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/detail" 
+                            exact
+                            render={(routerProps) => <DetailPage {...routerProps} />} 
                         />
                     </Switch>
                 </Router>

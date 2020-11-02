@@ -13,6 +13,7 @@ export default class Header extends Component {
                     <Link to="/">Poke Home</Link>
                    
                     <Link to="/list">List Page</Link>
+                    <Link to="/detail">Detail Page</Link>
                   
                 </h2>
             </div>
