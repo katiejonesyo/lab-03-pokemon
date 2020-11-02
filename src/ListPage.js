@@ -12,7 +12,7 @@ const sleep = (time) => new Promise((resolve, reject) => {
 
 export default class App extends Component {
   state = {
-    selectedCategory: '',
+    selectedCategory: 'type_1',
     selectedSort: '',
     inputVal: '',
     searchQuery: '',
@@ -24,21 +24,25 @@ export default class App extends Component {
   }
 
 fetchPokemon = async () => {
-  const response = await fetch.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
+  const response = await fetch.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&direction=${this.state.selectedSort}&sort=${this.state.selectedCategory}`);
   
   await sleep(2000)
   this.setState({ data: response.body.results});
+  console.log(response);
 }
 
-handleCategorySelect = (e) => {
-  this.setState({
+handleCategorySelect = async (e) => {
+ await this.setState({
     selectedCategory: e.target.value
   })
+  await this.fetchPokemon();
 }
-handleSort = (e) => {
-  this.setState({
+handleSort = async (e) => {
+  await this.setState({
     selectedSort: e.target.value
   });
+
+  await this.fetchPokemon();
 }
 
   handleSearch = (e) => {
@@ -56,7 +60,8 @@ handleSort = (e) => {
   }
 
   render() {
-    console.log(this.state.searchQuery)
+    console.log(this.state.selectedSort)
+    console.log(this.state.selectedCategory)
     return (
       <>  
       
@@ -75,6 +80,8 @@ handleSort = (e) => {
             <Sort 
               handleSort={this.handleSort}
               handleCategorySelect={this.handleCategorySelect}
+              selectedSort={this.state.selectedSort}
+              onChange={this.state.handleSort}
               />
               </section>
             
@@ -87,7 +94,7 @@ handleSort = (e) => {
               height="500" 
               frameBorder="0" 
               className="giphy-embed" 
-              allowFullScreen/>
+              allowFullScreen />
               : this.state.data.map((pokemon, i) => {
                 return (
                      <PokeItem

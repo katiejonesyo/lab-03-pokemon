@@ -12,6 +12,10 @@ export default class Sort extends Component {
                 </select>
                 <select className="category-dropdown" defaultValue={this.props.selectedCategory} onChange={this.props.handleCategorySelect}>
                     <option className="content" value="">all categories</option>
+
+                    <option className="attack" value="attack">Attack</option>
+                    <option className="defense" value="defense">Defense</option>
+                    
                 </select>
                 
             </div>
