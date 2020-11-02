@@ -10,10 +10,6 @@ import Header from './Header.js';
 import DetailPage from './DetailPage.js';
 
 
-
-
-
-
 export default class App extends Component {
     render() {
         
